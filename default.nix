@@ -14,10 +14,10 @@ let
     system = "x86_64-linux";
     installPhase = ''
       mkdir -p $out/lib/udev/rules.d
-      cp --preserve=mode -r * $out/
-      sed -i 's/0x//g' 99-jlink.rules
-      patch -i ${./99-jlink.rules.patch} 99-jlink.rules
-      mv 99-jlink.rules $out/lib/udev/rules.d/
+      mv * $out/
+      sed -i 's/0x//g' $out/99-jlink.rules
+      patch -i ${./99-jlink.rules.patch} $out/99-jlink.rules
+      mv $out/99-jlink.rules $out/lib/udev/rules.d/
     '';
   };
   ozone = stdenv.mkDerivation {
@@ -27,7 +27,7 @@ let
     src = ./ozone.tgz;
     installPhase = ''
       mkdir -p $out/
-      cp --preserve=mode -r * $out
+      mv * $out
     '';
   };
 in
