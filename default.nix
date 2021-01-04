@@ -21,7 +21,21 @@ let
     '';
   };
   ozone = stdenv.mkDerivation {
-    buildInputs = [ jlink ];
+    buildInputs = [
+      jlink
+      pkgs.gcc-unwrapped
+      pkgs.freetype
+      pkgs.xorg.libSM
+      pkgs.xorg.libICE
+      pkgs.xorg.libXrender
+      pkgs.xorg.libXrandr
+      pkgs.xorg.libXfixes
+      pkgs.xorg.libXcursor
+      pkgs.xorg.libXext
+      pkgs.fontconfig
+      pkgs.xorg.libX11
+    ];
+    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
     system = "x86_64-linux";
     name = "ozone";
     src = ./ozone.tgz;
@@ -31,20 +45,4 @@ let
     '';
   };
 in
-pkgs.buildFHSUserEnv {
-  name = "ozone";
-  targetPkgs = pkgs: [ ozone ];
-  multiPkgs = pkgs: [
-    pkgs.freetype
-    pkgs.xorg.libSM
-    pkgs.xorg.libICE
-    pkgs.xorg.libXrender
-    pkgs.xorg.libXrandr
-    pkgs.xorg.libXfixes
-    pkgs.xorg.libXcursor
-    pkgs.xorg.libXext
-    pkgs.fontconfig
-    pkgs.xorg.libX11
-  ];
-  runScript = "${ozone}/Ozone";
-}
+ozone

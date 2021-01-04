@@ -8,12 +8,12 @@
    curl -o jlink.tgz -d accept_license_agreement=accepted -d non_emb_ctr=confirmed https://www.segger.com/downloads/jlink/JLink_Linux_V692_x86_64.tgz
    ```
 2. Check the hash.
-3. Run `nix-build`, and `result/bin/ozone`.
+3. Run `nix-build`, and `result/Ozone`.
 
 A GUI should show up.  No access to hardware now so idk if this actually works.
 Especially the drivers, udev rules etc.
 
-It seems that the package requires FHS. Adding `autoPatchelfHook` would trigger
+Adding `autoPatchelfHook` to jlink would trigger
 [NixOS/patchelf#255](https://github.com/NixOS/patchelf/issues/255).
 
 References:
