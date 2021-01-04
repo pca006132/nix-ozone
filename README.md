@@ -13,8 +13,10 @@
 A GUI should show up.  No access to hardware now so idk if this actually works.
 Especially the drivers, udev rules etc.
 
-Adding `autoPatchelfHook` to jlink would trigger
-[NixOS/patchelf#255](https://github.com/NixOS/patchelf/issues/255).
+~~Adding `autoPatchelfHook` to jlink would trigger
+[NixOS/patchelf#255](https://github.com/NixOS/patchelf/issues/255).~~
+20.03 is fine, that should be a regression.
+
 
 References:
 - https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=jlink-software-and-documentation

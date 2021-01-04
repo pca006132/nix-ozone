@@ -1,5 +1,5 @@
 let
-  pkgs = import <nixpkgs> {};
+  pkgs = import (fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-20.03.tar.gz) {};
   stdenv = pkgs.stdenv;
   jlink = stdenv.mkDerivation {
     buildInputs = [
@@ -8,7 +8,18 @@ let
       pkgs.gnutar
       pkgs.ncurses5
       pkgs.gcc-unwrapped
+      pkgs.freetype
+      pkgs.xorg.libSM
+      pkgs.xorg.libICE
+      pkgs.xorg.libXrender
+      pkgs.xorg.libXrandr
+      pkgs.xorg.libXfixes
+      pkgs.xorg.libXcursor
+      pkgs.xorg.libXext
+      pkgs.fontconfig
+      pkgs.xorg.libX11
     ];
+    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
     name = "jlink";
     src = ./jlink.tgz;
     system = "x86_64-linux";
